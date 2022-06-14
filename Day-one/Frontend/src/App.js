@@ -1,14 +1,15 @@
 import { Select } from '@chakra-ui/react'
 import { useEffect, useState} from 'react';
 import './App.css';
-
+import { useSearchParams } from "react-router-dom";
 
 
 function App() {
+  const  [searchParams, setSearchParams] = useSearchParams();
   const [data, setData] = useState([]);
   const [sort, setSort] = useState('Source');
   const [filter, setFilter] = useState('');
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(Number(searchParams.get("page")||1));
   const [ totalPages, setTotalPages] = useState(0);
   useEffect(() => {
       async function fetchData() {
@@ -18,6 +19,10 @@ function App() {
           setTotalPages(Math.ceil(data.totalPages/10));
       }
       fetchData();
+      setSearchParams({
+        page,sort,
+        filter
+    })
   }, [page, sort, filter]); 
   return (
     <div className="App">
