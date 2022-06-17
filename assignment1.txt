@@ -1,0 +1,92 @@
+Q-1) .Explain what is Loose Coupling and Tight Coupling. Also show the examples of code having tight coupling and how you can make it loosely coupled.?
+
+//Answer 
+ight coupling means classes and objects are dependent on one another. In general, tight coupling is usually not good because it reduces the flexibility and re-usability of the code while Loose coupling means reducing the dependencies of a class that uses the different class directly.
+
+Tight Coupling
+The tightly coupled object is an object that needs to know about other objects and is usually highly dependent on each other's interfaces.
+Changing one object in a tightly coupled application often requires changes to a number of other objects.
+In the small applications, we can easily identify the changes and there is less chance to miss anything. But in large applications, these inter-dependencies are not always known by every programmer and there is a chance of overlooking changes.
+Example
+ Live Demo
+
+class A {
+   public int a = 0;
+   public int getA() {
+      System.out.println("getA() method");
+      return a;
+   }
+   public void setA(int aa) {
+      if(!(aa > 10))
+         a = aa;
+   }
+}
+public class B {
+   public static void main(String[] args) {
+      A aObject = new A();
+      aObject.a = 100; // Not suppose to happen as defined by class A, this causes tight coupling.
+      System.out.println("aObject.a value is: " + aObject.a);
+   }
+}
+In the above example, the code that is defined by this kind of implementation uses tight coupling and is very bad since class B knows about the detail of class A, if class A changes the variable 'a' to private then class B breaks, also class A's implementation states that variable 'a' should not be more than 10 but as we can see there is no way to enforce such a rule as we can go directly to the variable and change its state to whatever value we decide.
+
+Output
+aObject.a value is: 100
+
+Loose Coupling
+Loose coupling is a design goal to reduce the inter-dependencies between components of a system with the goal of reducing the risk that changes in one component will require changes in any other component.
+Loose coupling is a much more generic concept intended to increase the flexibility of the system, make it more maintainable and makes the entire framework more stable.
+Example
+ Live Demo
+
+class A {
+   private int a = 0;
+   public int getA() {
+      System.out.println("getA() method");
+      return a;
+   }
+   public void setA(int aa) {
+      if(!(aa > 10))
+         a = aa;
+   }
+}
+public class B {
+   public static void main(String[] args) {
+      A aObject = new A();
+      aObject.setA(100); // No way to set 'a' to such value as this method call will
+                         // fail due to its enforced rule.
+      System.out.println("aObject value is: " + aObject.getA());
+   }
+}
+In the above example, the code that is defined by this kind of implementation uses loose coupling and is recommended since class B has to go through class A to get its state where rules are enforced. If class A is changed internally, class B will not break as it uses only class A as a way of communication.
+
+Output
+getA() method
+aObject value is: 0
+
+
+
+
+Q-2) What is High cohesion and how is it helpful?
+
+//Answer 
+High cohesion is when you have a class that does a well defined job. Low cohesion is when a class does a lot of jobs that don't have much in common.
+
+Let's take this example:
+
+You have a class that adds two numbers, but the same class creates a window displaying the result. This is a low cohesive class because the window and the adding operation don't have much in common. The window is the visual part of the program and the adding function is the logic behind it.
+
+To create a high cohesive solution, you would have to create a class Window and a class Sum. The window will call Sum's method to get the result and display it. This way you will develop separately the logic and the GUI of your application.
+
+
+
+Q-3) State KISS and YAGNI principle.
+
+//Answer 
+YAGNI (You aint gona need it) refers to over analyzing and implementing things that may or may not be needed. Sure algorithmic elegance is nice and all but most situation you dont need it. In general engineering terms you should be carefull not to include your own requirements so that you dont taint your customer needs with your own ideas that end up costing the project with little impact for the client.
+
+KISS (Keep it simple stupid) refers to the fact that easy systems are easier to manage. Keeping things simple is not nesseserily less work (like YAGNI is) since it requires more knowlege to implement. They are sometimes similar but grow from different needs.
+
+YAGNI grows from a too much future anticipation, overzealous workers if you may. KISS is a strategy that tries to counteract human tendency for design creep.
+
+Yagni states you need to cut off the code you don’t need right now, KISS is about making the remaining code simple.

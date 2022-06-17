@@ -1,0 +1,110 @@
+Q-1)What is an Operating System and what all functions are provided by operating System?
+
+//Answer 
+An operating system (OS) is a program that acts as an interface between the system hardware and the user. Moreover, it handles all the interactions between the software and the hardware. All the working of a computer system depends on the OS at the base level. Further, it performs all the functions like handling memory, processes, the interaction between hardware and software, etc. Now, let us look at the  functions of operating system.
+
+Functions of Operating System :-
+
+1. Memory Management
+It is the management of the main or primary memory. Whatever program is executed, it has to be present in the main memory.  Main memory is a quick storage area that may be accessed directly by the CPU. When the program is completed, the memory region is released and can be used by other programs. Therefore, there can be more than one program present at a time. Hence, it is required to manage the memory.
+The operating system:
+     * Allocates and deallocates the memory.
+     * Keeps a record of which part of primary memory is used by whom and how much.
+     * Distributes the memory while multiprocessing.
+     * In multiprogramming, the operating system selects which processes acquire memory when and how much memory they get.
+
+2. Processor Management/Scheduling
+Every software that runs on a computer, whether in the background or in the frontend, is a process. Processor management is an execution unit in which a program operates. The operating system determines the status of the processor and processes, selects a job and its processor, allocates the processor to the process, and de-allocates the processor after the process is completed.
+When more than one process runs on the system the OS decides how and when a process will use the CPU. Hence, the name is also CPU Scheduling. The OS:
+Allocates and deallocates processor to the processes.
+Keeps record of CPU status.     
+
+3. Device Management
+An operating system regulates device connection using drivers. The processes may require devices for their use. This management is done by the OS. The OS:
+Allocates and deallocates devices to different processes.
+Keeps records of the devices.
+Decides which process can use which device for how much time.
+
+4. File Management
+The operating system manages resource allocation and de-allocation. It specifies which process receives the file and for how long. It also keeps track of information, location, uses, status, and so on. These groupings of resources are referred to as file systems. The files on a system are stored in different directories. The OS:
+Keeps records of the status and locations of files.
+Allocates and deallocates resources.
+Decides who gets the resources.
+
+5. Storage Management
+Storage management is a procedure that allows users to maximize the utilization of storage devices while also protecting data integrity on whatever media on which it lives. Network virtualization, replication, mirroring, security, compression, deduplication, traffic analysis, process automation, storage provisioning, and memory management are some of the features that may be included. The operating system is in charge of storing and accessing files. The creation of files, the creation of directories, the reading and writing of data from files and directories, as well as the copying of the contents of files and directories from one location to another are all included in storage management.
+
+
+
+
+
+What is a process? Explain Priority Scheduling and Round Robin(RR) Scheduling algorithms.
+
+
+What is a program?  :- Compiled code, that is ready to execute.
+2. What is a process? : - Program under execution.
+3. How OS creates a process? Converting program into a process.
+STEPS:
+a. Load the program & static data into memory.
+b. Allocate runtime stack.
+c. Heap memory allocation.
+d. IO tasks.
+e. OS handoffs control to main ().
+
+1) Priority Scheduling [Non-preemptive]
+a. Priority is assigned to a process when it is created.
+b. SJF is a special case of general priority scheduling with priority inversely proportional to BT.
+1.1). Priority Scheduling [Preemptive]
+a. Current RUN state job will be preempted if next job has higher priority.
+b. May cause indefinite waiting (Starvation) for lower priority jobs. (Possibility is they won’t get
+executed ever). (True for both preemptive and non-preemptive version)
+i. Solution: Ageing is the solution.
+ii. Gradually increase priority of process that wait so long. E.g., increase priority by 1 every 15
+minutes.
+
+2). Round robin scheduling (RR)
+a. Most popular
+b. Like FCFS but preemptive.
+c. Designed for time sharing systems.
+d. Criteria: AT + time quantum (TQ), Doesn’t depend on BT.
+e. No process is going to wait forever, hence very low starvation. [No convoy effect]
+f. Easy to implement.
+g. If TQ is small, more will be the context switch (more overhead).
+
+
+
+Q-3)   List some basic features of Linux Operating System.
+1.   Portable Environment 
+Linux software operates flawlessly on a variety of hardware platforms. Without the worry of incompatibility, individuals can use Linux operating system on any device. It runs the same way on both high-end and low-end hardware.
+
+2.   Free and Open-Source 
+Its source code is available for anybody to use and alter. Many developers collaborate in organizations to improve and strengthen Linux, and lots of developers constantly work on updating the Linux system.
+
+3.   Shell/ Command-line Interface
+The Linux system includes essential programs that users can utilize in order to issue commands to the operating system for executing the design flawlessly. You may also direct it to carry out various forms of Linux commands for effectively carrying out the applications.
+
+4.   End-to-end encryption
+Authentication can help you keep your data protected. Before you may access some critical files, the Linux Operating System requires you to enter a password. Furthermore, the Linux environment allows users to encrypt their data.
+
+5.   Graphical User Interface (GUI)
+Linux Operating System comes with Graphical User Interface (GUI) abilities in the same way you can with Windows. Similarly, users can install the programs, and the computer graphics will begin to work in the same way that Windows does.
+
+6.   Configure Keyboards into Different Languages
+Because Linux is available in various languages, it is simple to use it worldwide. As a result, you can change the language on your keyboard as per your preference. 
+
+
+
+
+Q-4)  What is Kernel in Linux ?
+
+The Linux® kernel is the main component of a Linux operating system (OS) and is the core interface between a computer’s hardware and its processes. It communicates between the 2, managing resources as efficiently as possible.
+
+The kernel is so named because—like a seed inside a hard shell—it exists within the OS and controls all the major functions of the hardware, whether it’s a phone, laptop, server, or any other kind of computer.
+
+
+The kernel has 4 jobs:
+
+Memory management: Keep track of how much memory is used to store what, and where
+Process management: Determine which processes can use the central processing unit (CPU), when, and for how long
+Device drivers: Act as mediator/interpreter between the hardware and processes
+System calls and security: Receive requests for service from the processes
