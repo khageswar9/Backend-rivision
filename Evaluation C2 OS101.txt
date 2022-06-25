@@ -1,0 +1,236 @@
+Q1 a) What do you know about client server architecture?
+b)What is the difference between DNS and IP address?
+
+//Answer
+In a client/server architecture, the server acts as the producer and the client acts as a consumer. The server houses and provides high-end, computing-intensive services to the client on demand. These services can include application access, storage, file sharing, printer access and/or direct access to the server’s raw computing power.
+
+Client/server architecture works when the client computer sends a resource or process request to the server over the network connection, which is then processed and delivered to the client. A server computer can manage several clients simultaneously, whereas one client can be connected to several servers at a time, each providing a different set of services.
+
+The client/server model as it evolved served pretty well for what some refer to as web 2.0, where the Internet slowly became a functional virtual space for users. It provided an established and predictable model for how user sessions would go, and how providers delivered resources based on requests for data packets and other resources.
+
+
+
+Example of Client/Server Communications
+Here's an example of how client/server communications work. In an average use of a browser to access a server-side website, the user or client enters the URL. The DNS server looks up the web server's IP address, and gives it to the browser. The browser generates an HTTP or HTTPS request, and the server, as the producer, sends the files. The client, as the consumer, receives them, and then, typically, sends follow-up requests.
+
+Although this model technically works for any number of similar processes, it does have some drawbacks. Over time, an alternative called peer-to-peer or P2P modeling has emerged, which many feel is in some ways superior to traditional client/server models, especially in terms of handing handling specific challenges where communications are more evolved.
+
+
+//Difference between DNS And IP Address
+
+Just as a street address determines where a letter should be delivered, an IP address identifies computers on the Internet. Network devices use IP addresses to communicate with each other. The Internet uses DNS (Domain Name System) to enable people to use words instead of numbers for Internet addresses.
+
+Domain Name: Domain name is an identification name for an IP address, like a contact name in a phone book. IP address:- It means internet protocol. It is 32 bit address, The unique address to communicate with the other systems in the network. IP address usually looks like this 192.168.
+
+IP Addresses and Domain Names In short, an IP address is the address that computers, servers and other devices use to identify one another online. ... When you input a URL like www.example.com/index into a web browser, its domain name is example.com. Basically, a domain name is the human-friendly version of an IP address.
+
+Without DNS, you cannot access any website by typing a URL in your browser. Computers talk to each other using IP addresses. Since humans cannot memorize thousands of strings of numbers, we have to use domain names instead of IP addresses.
+
+An IP address is an address assigned to any computer (including servers) to identify it on a given network. A DNS address is a Domain Name Service which is used to convert alphabetic references into a server's IP address generally for hosting services.
+
+
+<------------------------------------------------------------------------------------------------------------------------>
+<------------------------------------------------------------------------------------------------------------------------>
+
+
+Q2. What is CAP theorem, discuss a scenario where CAP theorem helps you choose a technology over the other or helps you make a design decision.
+
+//Answer
+The CAP theorem, originally introduced as the CAP principle, can be used to explain some of the competing requirements in a distributed system with replication. It is a tool used to make system designers aware of the trade-offs while designing networked shared-data systems. 
+
+The three letters in CAP refer to three desirable properties of distributed systems with replicated data: consistency (among replicated copies), availability (of the system for read and write operations) and partition tolerance (in the face of the nodes in the system being partitioned by a network fault). 
+
+The CAP theorem states that it is not possible to guarantee all three of the desirable properties – consistency, availability, and partition tolerance at the same time in a distributed system with data replication. 
+
+The theorem states that networked shared-data systems can only strongly support two of the following three properties: 
+ 
+
+Consistency – 
+Consistency means that the nodes will have the same copies of a replicated data item visible for various transactions. A guarantee that every node in a distributed cluster returns the same, most recent and a successful write. Consistency refers to every client having the same view of the data. There are various types of consistency models. Consistency in CAP refers to sequential consistency, a very strong form of consistency. 
+ 
+Availability – 
+Availability means that each read or write request for a data item will either be processed successfully or will receive a message that the operation cannot be completed. Every non-failing node returns a response for all the read and write requests in a reasonable amount of time. The key word here is “every”. In simple terms, every node (on either side of a network partition) must be able to respond in a reasonable amount of time. 
+ 
+Partition Tolerance – 
+Partition tolerance means that the system can continue operating even if the network connecting the nodes has a fault that results in two or more partitions, where the nodes in each partition can only communicate among each other. That means, the system continues to function and upholds its consistency guarantees in spite of network partitions. Network partitions are a fact of life. Distributed systems guaranteeing partition tolerance can gracefully recover from partitions once the partition heals.
+
+
+
+<------------------------------------------------------------------------------------------------------------------------>
+<------------------------------------------------------------------------------------------------------------------------>
+
+
+Q3) What are SOLID principles? Explain with examples wherever possible.
+
+//Answer
+Solid principles
+
+Acronym of acronyms:
+    – SRP: Single Responsibility Principle
+    – OCP: Open-Closed Principle
+    – LSP: Liskov Substitution Principle
+    – ISP: Interface Segregation Principle
+    – DIP: Dependency Inversion Principle
+    • Basically a set of principles for object-oriented
+design (with focus on designing the classes).
+
+SRP: Single Responsibility Principle
+Computational Geometry App ---------->  Rectangle ------------> Graphical App
+                                           |                        |
+                                           |                        |
+                                           |                        |
+                                           |                        |
+                                           |                        |
+                                           Gui <---------------------
+
+• Example: Rectangle class with draw() and area()
+• Computational geometry now depends on GUI, via
+Rectangle.
+• Any changes to Rectangle due to Graphical application necessitates rebuild, retest, etc. of Comp. geometry app.
+
+computational Geometry App              Rectangle ------------> Graphical App
+        |                         /         |                        |
+        |                     /             |                        |
+        |                 /                 |                        |
+        |              /                    |                        |
+        |           /                       |                        |
+      Geometric  /                          Gui <---------------------
+      rectangle                            
+
+
+Solution: Take the purely computational part of the Rectangle class and create a new class “Geometric Rectangle”.
+• All changes regarding graphical display can then be localized into the Rectangle class    
+
+
+OCP: Open-Closed Principle
+• “All systems change during their life cycles.” (Ivar Jacobson).
+• “Software entities should be open for extension, but closed for modification.” (variation on Bertrand Meyer’s idea).
+• Goal: avoid a “cascade of changes to dependent modules”.
+• When requirements change, you extend the behavior, not changing old code.
+
+Bad design: need to
+change client code when new kinds of server needed.
+Client <-----------------  Server
+
+
+Good design: can extend
+to new types of servers without modifying client code.
+ client  ------------> Graphical App
+                              |
+                              |
+                              |
+                              |
+                              |
+                             Server
+
+
+LSP: Liskov Substitution Principle
+• “Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.” (original idea due to Barbara Liskov).
+• Violation means the user class’s need to know ALL implementation details of the derived classes of the base class.
+• Violation of LSP leads to the violation of OCP.
+
+LSP: Example
+Rectangle Class ←− Square Class
+• Problem: setWidth(), setHeight() in Rectangle class assumes w and h are independently settable.
+• When Square class is used where Rectangle class is called for, behavior can be unpredictable, depending on implementation.
+• Want either setWidth() or setHeight() to set both width and height in the Square class.
+• LSP is violated when adding a derived class requires modifications of the base class.
+
+
+ISP: Interface Segregation Principle
+• “Clients should not be forced to depend upon interfaces that they do not use.”
+• Avoid “fat interfaces”.
+• Fat interfaces: interfaces of a class that can be broken down into groups that serve different set of clients.
+• Clients depending on a subset of interfaces need to change when other clients using a different subset changes.
+
+DIP: Dependency Inversion Principle
+• “A. High level modules should not depend upon low level modules. Both should depend upon
+abstractions.”
+• “ B. Abstractions should not depend upon details. Details should depend upon abstractions.”
+• DIP is an out-growth of OCP and LSP.
+• “Inversion”, because standard structured programming approaches make the higher level depend on lower level.
+
+
+<------------------------------------------------------------------------------------------------------------------------>
+<------------------------------------------------------------------------------------------------------------------------>
+
+
+Q4.a)Which of the design principles: solid principles or clean code pattern is being violated in this scenario.
+b.)Rectify/fix it with the best practices and also demonstrate the corresponding pseudo code.
+
+//Answer 
+
+protocol DataManager{
+    func read()
+    func write()
+}
+class DiskRealmManager:Data Manager{
+    func read(){
+        print("Reading DiskRealmManager")
+   }
+    func write(){
+        print("Saving Into Realm")
+    }
+}
+class DiskCoreData Manager:DataManager{
+   func read(){
+        print("Reading DiskRealmManager")
+   }
+    func write(){
+        print("Saving Into Realm")
+    }
+}
+class InMemory RealmManager:DataManager{
+    func read(){
+        print("Reading InMemory RealmManager")
+    }
+    func write(){
+        fatalError()
+    }
+}
+
+a)==> In the above code snipate it is violat the  Interface segregation principle (ISP) . 
+Because in the above code  class InMemoryRealmManager conforming to an interface where some method is useless for this class.
+As shown above code we created a general-purpose interface DataManager and many classes conforming to it. There are some features that are not needed by some of the classes .
+So we need to break this into client-specific interfaces so that it should:
+ 1-Increased reusability,
+ 2-Follow LSP,
+ 3-Compose features that only required instead of getting unrelated things,
+
+b)==>Following it’s the code supporting the Interface Segregation Principle. 
+By splitting the DataManger interface in 2 different interfaces(Readable, Writable) the new InMemoryRealmManager class is no longer forced to implement the write method. 
+Also, if we need another functionality for the robot-like fetching we create another interface Fetchable with a method fetch.
+
+
+protocol Readinginterface{
+    func read()
+}
+protocol WriteInterface{
+    func write()
+}
+class DiskRealmManager Readinginterface,WriteInterface{
+   func read(){
+        print("Reading DiskRealmManager")
+   }
+    func write(){
+        print("Saving Into Realm")
+    }
+}
+class DiskCoreData Manager Readinginterface,WriteInterface{
+    func read(){
+        print("Reading DiskRealmManager")
+   }
+    func write(){
+        print("Saving Into Realm")
+    }
+}
+class InMemory RealmManager Readinginterface{
+    func read(){
+        print("Reading DiskRealmManager")
+   }
+}
+
+<------------------------------------------------------------------------------------------------------------------------>
+<------------------------------------------------------------------------------------------------------------------------>
+
+

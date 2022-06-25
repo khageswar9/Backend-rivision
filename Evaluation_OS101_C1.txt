@@ -1,0 +1,200 @@
+Q1.a)Difference between tight coupling and loose coupling.
+b) What is the Difference between High Cohesion and Low Cohesion? Also provide Examples.
+
+//Answer
+Tight Coupling
+The tightly coupled object is an object that needs to know about other objects and is usually highly dependent on each other's interfaces.
+Changing one object in a tightly coupled application often requires changes to a number of other objects.
+In the small applications, we can easily identify the changes and there is less chance to miss anything. But in large applications, these inter-dependencies are not always known by every programmer and there is a chance of overlooking changes.
+Example
+ Live Demo
+
+class A {
+   public int a = 0;
+   public int getA() {
+      System.out.println("getA() method");
+      return a;
+   }
+   public void setA(int aa) {
+      if(!(aa > 10))
+         a = aa;
+   }
+}
+public class B {
+   public static void main(String[] args) {
+      A aObject = new A();
+      aObject.a = 100; // Not suppose to happen as defined by class A, this causes tight coupling.
+      System.out.println("aObject.a value is: " + aObject.a);
+   }
+}
+In the above example, the code that is defined by this kind of implementation uses tight coupling and is very bad since class B knows about the detail of class A, if class A changes the variable 'a' to private then class B breaks, also class A's implementation states that variable 'a' should not be more than 10 but as we can see there is no way to enforce such a rule as we can go directly to the variable and change its state to whatever value we decide.
+
+Output
+aObject.a value is: 100
+
+Loose Coupling
+Loose coupling is a design goal to reduce the inter-dependencies between components of a system with the goal of reducing the risk that changes in one component will require changes in any other component.
+Loose coupling is a much more generic concept intended to increase the flexibility of the system, make it more maintainable and makes the entire framework more stable.
+Example
+ Live Demo
+
+class A {
+   private int a = 0;
+   public int getA() {
+      System.out.println("getA() method");
+      return a;
+   }
+   public void setA(int aa) {
+      if(!(aa > 10))
+         a = aa;
+   }
+}
+public class B {
+   public static void main(String[] args) {
+      A aObject = new A();
+      aObject.setA(100); // No way to set 'a' to such value as this method call will
+                         // fail due to its enforced rule.
+      System.out.println("aObject value is: " + aObject.getA());
+   }
+}
+In the above example, the code that is defined by this kind of implementation uses loose coupling and is recommended since class B has to go through class A to get its state where rules are enforced. If class A is changed internally, class B will not break as it uses only class A as a way of communication.
+
+Output
+getA() method
+aObject value is: 0
+
+//differnce between high cohesion and low cohesion
+High cohesion is when you have a class that does a well-defined job. Low cohesion is when a class does a lot of jobs that don’t have much in common.
+High cohesion gives us better-maintaining facility and Low cohesion results in monolithic classes that are difficult to maintain, understand and reduce re-usability
+
+//example of highcohesion
+class HighCohesive {
+    // -------------- functions related to read resource
+    // read the resource from disk
+    public String readFromDisk(String fileName) {
+         return "reading data of " + fileName;
+    }
+
+    // read the resource from web
+    public String readFromWeb(String url) {
+         return "reading data of " + url;
+    }
+
+    // read the resource from network
+    public String readFromNetwork(String networkAddress) {
+         return "reading data of " + networkAddress;
+    }
+}
+
+<---------------------------------------------------------------------------------------------------------------------->
+
+Q2 a) Explain DRY principle and how can we achieve it
+b) Explain the KISS principle with Example.
+
+//Answer
+Don't Repeat Yourself (DRY)
+Duplication of code can make code very difficult to maintain. Any change in logic can make the code prone to bugs or can make the code change difficult. This can be fixed by doing code reuse (DRY Principle). The DRY principle is stated as "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system". The way to achieve DRY is by creating functions and classes to make sure that any logic should be written in only one place.
+
+How to achieve dry?
+to avoid violating the DRY principle, divide your system into pieces. Divide your code and logic into smaller reusable units and use that code by calling it where you want. Don't write lengthy methods, but divide logic and try to use the existing piece in your method.
+
+Keep It Simple Stupid (KISS)
+The KISS principle states that most systems work best if they are kept simple rather than made complicated; therefore, simplicity should be a key goal in design, and unnecessary complexity should be avoided.
+Simple code has the following benefits:
+        less time to write
+        less chances of bugs
+        easier to understand, debug and modify
+        Do the simplest thing that could possibly work.
+Code should be easy to read and understand without much thinking. If it isn't then there is a prospect of simplification.
+
+Example of KISS :
+public String weekday1(int day) {
+    switch (day) {
+        case 1:
+            return "Monday";
+        case 2:
+            return "Tuesday";
+        case 3:
+            return "Wednesday";
+        case 4:
+            return "Thursday";
+        case 5:
+            return "Friday";
+        case 6:
+            return "Saturday";
+        case 7:
+            return "Sunday";
+        default:
+            throw new InvalidOperationException("day must be in range 1 to 7");
+    }
+}
+
+public String weekday2(int day) {
+    if ((day < 1) || (day > 7)) throw new InvalidOperationException("day must be in range 1 to 7");
+
+    string[] days = {
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    };
+
+    return days[day - 1];
+
+<---------------------------------------------------------------------------------------------------------------------->
+
+Q-3)  What is Pessimistic Locking and Optimistic Locking?
+
+//Answer
+Pessimistic Locking
+Pessimistic locking (generally implemented using synchronized keyword in java) is a way of achieving mutual exclusion by always locking the entire scope. The first thread to acquire the lock will retain the lock until the scope execution. It will then release the lock which can then be acquired by any other waiting thread.
+
+Optimistic Locking
+Optimistic locking is a way of managing concurrency control, generally used by transactional systems. In this implementation, we allow multiple threads to compete for the update completion but only committing the transaction if it's not already updated.
+
+<---------------------------------------------------------------------------------------------------------------------->
+
+Q-4) . What is a DeadLock ? And what are methods by which we can handle deadLock.
+
+//Answer
+//Deadlock Explanation
+1. In Multi-programming environment, we have several processes competing for finite number of resources
+2. Process requests a resource (R), if R is not available (taken by other process), process enters in a waiting state. Sometimes that waiting process is never able to change its state because the resource, it has requested is busy (forever, called DEADLOCK (DL)
+3. Two or more processes are waiting on some resource’s availability, which will never be available as it is also busy with some other process. The Processes are said to be in Deadlock.
+4. DL is a bug present in the process/thread synchronization method.
+5. In DL, processes never finish executing, and the system resources are tied up, preventing other jobs from starting.
+6. Example of resources: Memory space, CPU cycles, files, locks, sockets, IO devices etc.
+7. Single resource can have multiple instances of that. E.g., CPU is a resource, and a system can have 2 CPUs.
+
+//handling Deadlock
+ Recovery from Deadlock
+    a. Process termination
+        i. Abort all DL processes
+        ii. Abort one process at a time until DL cycle is eliminated.
+    b. Resource preemption
+        i. To eliminate DL, we successively preempt some resources from processes and
+        give these resources to other processes until DL cycle is broken
+
+<---------------------------------------------------------------------------------------------------------------------->
+
+Q-5) What is a HTTP protocol? Difference between HTTP and HTTPS.
+
+//Answer
+The Hypertext Transfer Protocol (HTTP) is the foundation of the World Wide Web, and is used to load web pages using hypertext links. HTTP is an application layer protocol designed to transfer information between networked devices and runs on top of other layers of the network protocol stack. A typical flow over HTTP involves a client machine making a request to a server, which then sends a response message.
+
+//difference between HTTP and HTTPS
+
+    *) HTTP URL in your browser's address bar is http://, and the HTTPS URL is https://.
+    *) HTTP is unsecured while HTTPS is secured.
+    *) HTTP sends data over port 80 while HTTPS uses port 443.
+    *) HTTP operates at application layer, while HTTPS operates at transport layer.
+    *) No SSL certificates are required for HTTP; with HTTPS, it is required that you have an SSL certificate and a CA & sign it
+    *) HTTP doesn't require domain validation, whereas HTTPS requires at least domain validation and certain certificates even require legal document validation.
+    *) There is no encryption in HTTP; with HTTPS, the data is encrypted before sending.
+
+
+<---------------------------------------------------------------------------------------------------------------------->
+<---------------------------------------------------------------------------------------------------------------------->

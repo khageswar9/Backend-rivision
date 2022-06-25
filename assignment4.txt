@@ -1,0 +1,60 @@
+Q-1) Explain 3-Tier Architecture ?
+
+The three tiers in detail
+Presentation tier
+The presentation tier is the user interface and communication layer of the application, where the end user interacts with the application. Its main purpose is to display information to and collect information from the user. This top-level tier can run on a web browser, as desktop application, or a graphical user interface (GUI), for example. Web presentation tiers are usually developed using HTML, CSS and JavaScript. Desktop applications can be written in a variety of languages depending on the platform.
+
+Application tier
+The application tier, also known as the logic tier or middle tier, is the heart of the application. In this tier, information collected in the presentation tier is processed - sometimes against other information in the data tier - using business logic, a specific set of business rules. The application tier can also add, delete or modify data in the data tier.
+
+The application tier is typically developed using Python, Java, Perl, PHP or Ruby, and communicates with the data tier using API calls. 
+
+Data tier
+The data tier, sometimes called database tier, data access tier or back-end, is where the information processed by the application is stored and managed. This can be a relational database management system such as PostgreSQL, MySQL, MariaDB, Oracle, DB2, Informix or Microsoft SQL Server, or in a NoSQL Database server such as Cassandra, CouchDB or MongoDB. 
+
+In a three-tier application, all communication goes through the application tier. The presentation tier and the data tier cannot communicate directly with one another.
+
+
+
+Q-2)  Explain Basic Terminologies
+1) Replication:
+2) Consistency
+3) Eventual consistency
+4) Availability
+5) Sharding
+
+
+
+Q-3) Q3.What is CAP Theorem ?
+
+The CAP theorem, originally introduced as the CAP principle, can be used to explain some of the competing requirements in a distributed system with replication. It is a tool used to make system designers aware of the trade-offs while designing networked shared-data systems. 
+
+The three letters in CAP refer to three desirable properties of distributed systems with replicated data: consistency (among replicated copies), availability (of the system for read and write operations) and partition tolerance (in the face of the nodes in the system being partitioned by a network fault). 
+
+The CAP theorem states that it is not possible to guarantee all three of the desirable properties – consistency, availability, and partition tolerance at the same time in a distributed system with data replication. 
+
+The theorem states that networked shared-data systems can only strongly support two of the following three properties: 
+ 
+
+Consistency – 
+Consistency means that the nodes will have the same copies of a replicated data item visible for various transactions. A guarantee that every node in a distributed cluster returns the same, most recent and a successful write. Consistency refers to every client having the same view of the data. There are various types of consistency models. Consistency in CAP refers to sequential consistency, a very strong form of consistency. 
+ 
+Availability – 
+Availability means that each read or write request for a data item will either be processed successfully or will receive a message that the operation cannot be completed. Every non-failing node returns a response for all the read and write requests in a reasonable amount of time. The key word here is “every”. In simple terms, every node (on either side of a network partition) must be able to respond in a reasonable amount of time. 
+ 
+Partition Tolerance – 
+Partition tolerance means that the system can continue operating even if the network connecting the nodes has a fault that results in two or more partitions, where the nodes in each partition can only communicate among each other. That means, the system continues to function and upholds its consistency guarantees in spite of network partitions. Network partitions are a fact of life. Distributed systems guaranteeing partition tolerance can gracefully recover from partitions once the partition heals. 
+ 
+The use of the word consistency in CAP and its use in ACID do not refer to the same identical concept. 
+
+In CAP, the term consistency refers to the consistency of the values in different copies of the same data item in a replicated distributed system. In ACID, it refers to the fact that a transaction will not violate the integrity constraints specified on the database schema.
+
+Q-4 )  What are Public and Private Keys? How are they used in Cryptography?
+
+Private Keys and Public Keys terms are used in encryption and decryption. These keys are used to encrypt/decrypt sensitive information.
+
+Private Key
+The private key is used to both encrypt and decrypt the data. This key is shared between the sender and receiver of the encrypted sensitive information. The private key is also called symmetric being common for both parties. Private key cryptography is faster than public-key cryptography mechanism.
+
+Public Key
+The public key is used to encrypt and a private key is used decrypt the data. The private key is shared between the sender and receiver of the encrypted sensitive information. The public key is also called asymmetric cryptography.
